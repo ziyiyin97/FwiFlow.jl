@@ -97,15 +97,15 @@ void cufd(double *misfit, double *grad_Lambda, double *grad_Mu,
 
   dim3 threads(TX, TY);
   dim3 blocks((nz + TX - 1) / TX, (nx + TY - 1) / TY);
-  dim3 threads2(TX + 4, TY + 4);
-  dim3 blocks2((nz + TX + 3) / (TX + 4), (nx + TY + 3) / (TY + 4));
+  // dim3 threads2(TX + 4, TY + 4);
+  // dim3 blocks2((nz + TX + 3) / (TX + 4), (nx + TY + 3) / (TY + 4));
 
   float *d_vz, *d_vx, *d_szz, *d_sxx, *d_sxz, *d_vz_adj, *d_vx_adj, *d_szz_adj,
       *d_sxx_adj, *d_sxz_adj;
   float *d_mem_dvz_dz, *d_mem_dvz_dx, *d_mem_dvx_dz, *d_mem_dvx_dx;
   float *d_mem_dszz_dz, *d_mem_dsxx_dx, *d_mem_dsxz_dz, *d_mem_dsxz_dx;
   float *d_l2Obj_temp;
-  float *h_l2Obj_temp = NULL;
+  float *h_l2Obj_temp = nullptr;
   h_l2Obj_temp = (float *)malloc(sizeof(float));
   float h_l2Obj = 0.0;
   float *d_gauss_amp;
